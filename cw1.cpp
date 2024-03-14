@@ -112,7 +112,7 @@ void login()
  // Here, the user has to write his userId and Password which are then to be compared with records.txt ids and passwords and if matched the login is successful
  int option;
  int count = 0;
- string userID, password, id, pass, decrypt;
+ string userID, password, id, pass, decrypt, encrypt, generatedPass;
  cout << "\033[2J\033[1;1H";
  cout << "Please enter the username and password: " << endl;
  cout << "Username: ";
@@ -157,24 +157,116 @@ void login()
   {
    cout << "Enter the username for your website: ";
    cin >> username;
-   cout << "Enter the password for your website: ";
-   cin >> password;
-   cout << "Enter the name of your website: ";
-   cin >> website;
-   for (int i = 0; i < username.size(); i++)
+   cout << "| Press 1 to Choose your own password           " << endl;
+   cout << "| Press 2 to generate a strong password           " << endl;
+   cin >> option;
+   switch (option)
    {
-    char e = username[i] + 3;
-    encryptU += e;
-   }
-   for (int i = 0; i < password.size(); i++)
+   case 1:
    {
-    char f = password[i] + 3;
-    encryptP += f;
+    // DO-While statement, which is responsible for repeating the password-entry process while validatePassword != true, which means it will be repeating the process until the user enters a strong password
+    do
+    {
+     cout << "Your Password Has to contain the following: \n";
+     cout << "~ 6 Characters or more\n~ Upper Case Letter\n~ Lower Case Letter\n~ Special Character\n~ Number\n";
+     cout << "Enter Password : ";
+     cin >> password;
+
+     // Using the validatePassword function, and if !true, it means the password is weak, and the user has to enter a strong password
+     if (validatePassword(password) != true)
+     {
+      cout << "\nPlease enter a strong password\n";
+     }
+     // while statement
+    } while (validatePassword(password) != true);
+
+    // If all is well, we use the ofstream class which opens a file and is supposed to write in it, and writing the userID and encrypted pass for future login use
+    cout << "Enter the name of your website: ";
+    cin >> website;
+    for (int i = 0; i < username.size(); i++)
+    {
+     char e = username[i] + 3;
+     encryptU += e;
+    }
+    for (int i = 0; i < password.size(); i++)
+    {
+     char f = password[i] + 3;
+     encryptP += f;
+    }
+    ofstream f0("passwords.txt", ios::app);
+    f0 << userID << ' ' << encryptU << ' ' << encryptP << ' ' << website << endl;
+    cout << "\033[2J\033[1;1H";
+    cout << "\nYour Credintials have been stored successfully, Thanks for using our Password Manager.\n";
+    exit(1);
    }
-   ofstream f0("passwords.txt", ios::app);
-   f0 << userID << ' ' << encryptU << ' ' << encryptP << ' ' << website << endl;
-   cout << "\033[2J\033[1;1H";
-   cout << "\nYour Credintials have been stored successfully";
+   case 2:
+   {
+    // Do while statement which ensures the generatedPass passes by the validatePassword function, following the same methodolgy as above
+    do
+    {
+     /* This Upcoming Section is Responsible for generation of strong Password */
+
+     // initializing the length of password(26), c(counter for digits), s(counter for special characters)
+     int n = 26, c = 0, s = 0;
+
+     srand(time(0));
+    N:
+     // generatedPass is now empty
+     generatedPass = "";
+     // character C initialization
+     char C;
+
+     // for loop which keeps doing the same process 26 times till it reaches length of our desired password(26)
+     for (int z = 0; z < n; z++)
+     {
+      // First letter using GenRand()
+      C = GenRand();
+      // Adding Letter to the generatedPass
+      generatedPass += C;
+      // Two if statements which check if C character is digit or special character and implementing the counter accordingly
+      if (isdigit(C))
+      {
+       c++;
+      }
+      if (C == '!' || C == '@' || C == '$' || C == '%' || C == '^' || C == '&' || C == '*' || C == '#' || C == '-' || C == '_' || C == '(' || C == ')')
+      {
+       s++;
+      }
+     }
+     // This statement says if we reach two characters and the special counter and digits are still 0 to goto N which means repeating the same process again till we reach the desired password
+     if (n > 2 && (s == 0 || c == 0))
+     {
+      goto N;
+     }
+    } while (validatePassword(generatedPass) != true);
+
+    // This section we use ofstream which means this is a file we will be writing into
+    ofstream f1("passwords.txt", ios::app);
+
+    // For loop that goes through each letter in generated pass and for each character it adds 3 to it (caesar cipher)
+    cout << "Enter the name of your website: ";
+    cin >> website;
+    for (int i = 0; i < username.size(); i++)
+    {
+     char e = username[i] + 3;
+     encryptU += e;
+    }
+    for (int i = 0; i < generatedPass.size(); i++)
+    {
+     char f = generatedPass[i] + 3;
+     encryptP += f;
+    }
+
+    ofstream f0("passwords.txt", ios::app);
+    f0 << userID << ' ' << encryptU << ' ' << encryptP << ' ' << website << endl;
+    cout << "\033[2J\033[1;1H";
+    cout << "\nYour Credintials have been stored successfully, Thanks for using our Password Manager.\n";
+    exit(1);
+    break;
+   }
+   default:
+    break;
+   }
   }
   case 2:
   {
@@ -209,7 +301,8 @@ void login()
      cout << "Hello " << id;
      cout << "\nUsername: " << decryptU;
      cout << "\nPassword: " << decryptP;
-     cout << "\nWebsite: " << webw << endl;
+     cout << "\nWebsite: " << webw << endl
+          << endl;
     }
    }
   }
