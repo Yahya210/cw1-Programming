@@ -72,12 +72,13 @@ bool validatePassword(string input)
  {
   return false;
  }
+ // Flags of false to check for letter
  bool hasUpper = false;
  bool hasLower = false;
  bool hasDigit = false;
  bool hasSpecial = false;
 
- // for loop that checks for each character in a string provided
+ // for loop that checks for each character in a string provided, if a certain condition is satisfied it sets the according flag to True
  for (char cha : input)
  {
   if (isupper(cha))
@@ -122,7 +123,7 @@ void login()
 
  ifstream input("records.txt");
 
- // For loop that goes through each letter in generated pass and for each character it subtracts 3 from it (caesar cipher)
+ // For loop that goes through each letter in the password in our records and for each character it subtracts 3 from it (caesar cipher)
 
  while (input >> id >> pass)
  {
@@ -151,8 +152,10 @@ void login()
   cout << "\n| Press 1 to Enter a new username and password in the password manager" << endl;
   cout << "| Press 2 to Retrieve a password           " << endl;
   cin >> option;
+  // Switch case, to choose wether to enter new credentials or retrieve password
   switch (option)
   {
+   // Nested Switch case to choose wether to choose own password or to generate strong password
   case 1:
   {
    cout << "Enter the username for your website: ";
@@ -180,7 +183,7 @@ void login()
      // while statement
     } while (validatePassword(password) != true);
 
-    // If all is well, we use the ofstream class which opens a file and is supposed to write in it, and writing the userID and encrypted pass for future login use
+    // Input the name of website
     cout << "Enter the name of your website: ";
     cin >> website;
     for (int i = 0; i < username.size(); i++)
@@ -193,6 +196,7 @@ void login()
      char f = password[i] + 3;
      encryptP += f;
     }
+    // Writing Results in passwords.txt (UserID, Encrypted Username in Website, Encrypted Password, Website Link)
     ofstream f0("passwords.txt", ios::app);
     f0 << userID << ' ' << encryptU << ' ' << encryptP << ' ' << website << endl;
     cout << "\033[2J\033[1;1H";
@@ -243,7 +247,7 @@ void login()
     // This section we use ofstream which means this is a file we will be writing into
     ofstream f1("passwords.txt", ios::app);
 
-    // For loop that goes through each letter in generated pass and for each character it adds 3 to it (caesar cipher)
+    // For loop that goes through each letter in username and generated pass and for each character it adds 3 to it (caesar cipher)
     cout << "Enter the name of your website: ";
     cin >> website;
     for (int i = 0; i < username.size(); i++)
@@ -256,7 +260,7 @@ void login()
      char f = generatedPass[i] + 3;
      encryptP += f;
     }
-
+    // Writing Results in passwords.txt (UserID, Encrypted Username in Website, Encrypted Password, Website Link)
     ofstream f0("passwords.txt", ios::app);
     f0 << userID << ' ' << encryptU << ' ' << encryptP << ' ' << website << endl;
     cout << "\033[2J\033[1;1H";
@@ -275,8 +279,11 @@ void login()
    cout << "Enter the name of the website you want to retireve credentials of: ";
    cin >> websites;
    // For loop that goes through each letter in generated pass and for each character it subtracts 3 from it (caesar cipher)
+
+   // While loop that goes through the file, and takes each parameter (separated by a space in the file)
    while (input0 >> id >> user >> passw >> webw)
    {
+    // If condition to check if (id in file matches current userID)
     if (id == userID)
     {
      decryptU = "";
@@ -294,7 +301,7 @@ void login()
       decryptP += g;
      }
 
-     // If condition that checks if userId entered by user matches first argument (id) in records.txt and password equals to the decrypted password from records.txt (as passwords are stored encrypted and have to be decrypted), count=1 if this succedes
+     // If condition that checks if id matches userID and website input matches website link in our records, if so it prints out credentials
     }
     if (id == userID && websites == webw)
     {
@@ -303,6 +310,12 @@ void login()
      cout << "\nPassword: " << decryptP;
      cout << "\nWebsite: " << webw << endl
           << endl;
+    }
+    // else statement
+    else
+    {
+     cout << "Your User Doesn't have any credintials of this website \n";
+     break;
     }
    }
   }
@@ -326,7 +339,7 @@ void login()
 void registration()
 {
  int option;
- string ruserId, rpassword, rid, rpass, strPass, generatedPass, encrypt;
+ string ruserId, rpassword, rid, rpass, generatedPass, encrypt;
  cout << "\033[2J\033[1;1H";
  cout << "Enter your Username : ";
  cin >> ruserId;
