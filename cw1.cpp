@@ -146,7 +146,76 @@ void login()
  // If count = 1 the user is successfully logged in
  if (count == 1)
  {
+  string username, user, password, passw, webw, website, encryptU, encryptP, decryptU, decryptP, websites;
   cout << "Welcome " << userID << "\nSuccessful Login !\n";
+  cout << "\n| Press 1 to Enter a new username and password in the password manager" << endl;
+  cout << "| Press 2 to Retrieve a password           " << endl;
+  cin >> option;
+  switch (option)
+  {
+  case 1:
+  {
+   cout << "Enter the username for your website: ";
+   cin >> username;
+   cout << "Enter the password for your website: ";
+   cin >> password;
+   cout << "Enter the name of your website: ";
+   cin >> website;
+   for (int i = 0; i < username.size(); i++)
+   {
+    char e = username[i] + 3;
+    encryptU += e;
+   }
+   for (int i = 0; i < password.size(); i++)
+   {
+    char f = password[i] + 3;
+    encryptP += f;
+   }
+   ofstream f0("passwords.txt", ios::app);
+   f0 << userID << ' ' << encryptU << ' ' << encryptP << ' ' << website << endl;
+   cout << "\033[2J\033[1;1H";
+   cout << "\nYour Credintials have been stored successfully";
+  }
+  case 2:
+  {
+   ifstream input0("passwords.txt");
+
+   cout << "Enter the name of the website you want to retireve credentials of: ";
+   cin >> websites;
+   // For loop that goes through each letter in generated pass and for each character it subtracts 3 from it (caesar cipher)
+   while (input0 >> id >> user >> passw >> webw)
+   {
+    if (id == userID)
+    {
+     decryptU = "";
+     decryptP = "";
+
+     for (int i = 0; i < user.size(); i++)
+     {
+      char d = user[i] - 3;
+      decryptU += d;
+     }
+
+     for (int i = 0; i < passw.size(); i++)
+     {
+      char g = passw[i] - 3;
+      decryptP += g;
+     }
+
+     // If condition that checks if userId entered by user matches first argument (id) in records.txt and password equals to the decrypted password from records.txt (as passwords are stored encrypted and have to be decrypted), count=1 if this succedes
+    }
+    if (id == userID && websites == webw)
+    {
+     cout << "Hello " << id;
+     cout << "\nUsername: " << decryptU;
+     cout << "\nPassword: " << decryptP;
+     cout << "\nWebsite: " << webw << endl;
+    }
+   }
+  }
+  default:
+   break;
+  }
  }
  // else login failed
  else
