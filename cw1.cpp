@@ -114,7 +114,7 @@ void login()
  int count = 0;
  string userID, password, id, pass, decrypt;
  cout << "\033[2J\033[1;1H";
- cout << "Please enter the username and password : " << endl;
+ cout << "Please enter the username and password: " << endl;
  cout << "Username: ";
  cin >> userID;
  cout << "Password: ";
