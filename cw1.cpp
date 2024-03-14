@@ -59,7 +59,7 @@ int main()
   cout << "\t\t\t Thank You! \n\n";
   break;
  default:
-  // cout << "\033[2J\033[1;1H";
+  cout << "\033[2J\033[1;1H";
   cout << "\t\t\t Please enter a valid choice \n";
   main();
  }
@@ -113,7 +113,7 @@ void login()
  int option;
  int count = 0;
  string userID, password, id, pass, decrypt;
- // cout << "\033[2J\033[1;1H";
+ cout << "\033[2J\033[1;1H";
  cout << "Please enter the username and password : " << endl;
  cout << "Username: ";
  cin >> userID;
@@ -139,7 +139,7 @@ void login()
   if (id == userID && password == decrypt)
   {
    count = 1;
-   // cout << "\033[2J\033[1;1H";
+   cout << "\033[2J\033[1;1H";
   }
  }
  input.close();
@@ -165,7 +165,7 @@ void registration()
 {
  int option;
  string ruserId, rpassword, rid, rpass, strPass, generatedPass, encrypt;
- // cout << "\033[2J\033[1;1H";
+ cout << "\033[2J\033[1;1H";
  cout << "Enter your Username : ";
  cin >> ruserId;
 
@@ -219,7 +219,7 @@ void registration()
   // If all is well, we use the ofstream class which opens a file and is supposed to write in it, and writing the userID and encrypted pass for future login use
   ofstream f1("records.txt", ios::app);
   f1 << ruserId << ' ' << encrypt << endl;
-  // cout << "\033[2J\033[1;1H";
+  cout << "\033[2J\033[1;1H";
   cout << "\nRegistration is Successful!\n\nYou'll be redirected to the main menu in 5 seconds\n";
   break;
  }
@@ -277,7 +277,7 @@ void registration()
 
   // Writing the userid and encrypted password to the records.txt file
   f1 << ruserId << ' ' << encrypt << endl;
-  // cout << "\033[2J\033[1;1H";
+  cout << "\033[2J\033[1;1H";
   cout << "Your Password is: " << generatedPass;
   cout << "\nRegistration is Successful!\n\nYou'll be redirected to the main menu in 5 seconds\n";
   break;
