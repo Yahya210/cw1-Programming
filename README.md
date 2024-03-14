@@ -2,7 +2,7 @@
 This system is a command-line application written in C++ with the following features:
 
 ## Features
-* Registration: Users can register by providing a username and choosing either their own password or generating a strong password.
+* Registration: Users can provide usernames and choosing either their own password or generating a strong password.
 * Strong Password Generation : this program provides strong pass generation of a password that contains 26 letters containing uppercase lowercase, special characters, and digits.
 * Login: Registered users can log in by providing their username and password.
 * Password Strength: The system enforces strong password requirements, including a minimum length of 6 characters, containing at least one uppercase letter, one lowercase letter, one digit, and one special character.
