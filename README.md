@@ -1,5 +1,10 @@
 # Login & Registration System / Secure Password Storage / Strong Password Generator
-This login system is a simple command-line application written in C++ that allows users to register with a username and password, and then subsequently log in with those credentials.
+This system is a command-line application written in C++ that allows users to:
+* Register with a username and password.
+* Generate Strong Passwords
+* Log in with registered credentials.
+* Encrypt their passwords for secure storage
+  * ss
 
 ## Features
 Registration: Users can register by providing a username and choosing either their own password or generating a strong password.
