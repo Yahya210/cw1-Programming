@@ -20,13 +20,13 @@ This system is a command-line application written in C++ with the following feat
 1. Compilation: Compile the login_system.cpp file using a C++ compiler. For example, using g++: g++ cw1.cpp -o cw1.
 2. Execution: Run the compiled executable file. For example: ./cw1.
 3. Main Menu: Upon running the program, you will be presented with a main menu where you can choose to log in, register, or exit.
-<img width="312" alt="Main Menu" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/1c8c9a4a-6659-40b8-86b6-1a6a305b52f2">
+<div align="center"><img width="312" alt="Main Menu" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/1c8c9a4a-6659-40b8-86b6-1a6a305b52f2"></div>
 
 4. Registration: If you choose to register, you will be prompted to enter your username and choose a password. You can either enter your own password(Ensuring you meet the strong password criteria) or generate a strong password.
-<img width="408" alt="registration-secure-yahya-duplicates" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/ff13c0ae-2a94-45c1-bde7-52f9fda7da55">
+<div align="center"><img width="408" alt="registration-secure-yahya-duplicates" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/ff13c0ae-2a94-45c1-bde7-52f9fda7da55"></div>
 
 5. Login: If you choose to log in, you will be prompted to enter your username and password. If the provided credentials match those in the records, you will be successfully logged in.
-<img width="262" alt="Login-Generated" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/2048339d-24e6-4117-b5b2-962323c903ad">
+<div align="center"><img width="262" alt="Login-Generated" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/2048339d-24e6-4117-b5b2-962323c903ad"></div>
 
 6. Using password manager: Now after successful login, the user can now use the password manager, now the user has two options, either entering new credintials: username, password and link of website. The second option is retrieving credintials he previously inserted in our records.
    1. **Entering new credintials**
@@ -34,13 +34,16 @@ This system is a command-line application written in C++ with the following feat
       * His/her Username on the website
       * The password of the username (Either by entering strong password or generating a strong one)
       * The link of the website
-      * <img width="437" alt="Screenshot 2024-03-14 at 10 39 02 PM" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/1eed7fe0-be4f-4df7-9462-24d5b70d96c9">
+      * <div align="center"><img width="437" alt="Screenshot 2024-03-14 at 10 39 02 PM" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/1eed7fe0-be4f-4df7-9462-24d5b70d96c9"></div>
     2. **Retrieving a password**
        * In the case of retrieving a password, the user has to only enter the link of the website he/she wants to retrieve credintials about, and because we authenticated the user in            previous steps, we fetch the credintials using the userID and website if he/she successfully logged in.
-       * <img width="520" alt="Screenshot 2024-03-14 at 10 47 06 PM" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/add2cf44-df4e-4058-9bef-a3a373f5b0ac">
+       * <div align="center"><img width="520" alt="Screenshot 2024-03-14 at 10 47 06 PM" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/add2cf44-df4e-4058-9bef-a3a373f5b0ac"></div>
 
+7.	Checking your credentials in text files (Encrypted): By accessing the passwords.txt file, you can check for your credentials used to login on the program are encrypted, as well as records.txt, you find that your username and password of the website are encrypted.
 
-7. Exiting: You can choose to exit the program at any time from the main menu.
+<div align="center"><img width="468" alt="image" src="https://github.com/Yahya210/cw1-Programming/assets/114566232/44b66266-6e23-4988-bec9-9a27e7b062e2"></div>
+
+8. Exiting: You can choose to exit the program at any time from the main menu.
 
 
 
